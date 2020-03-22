@@ -83,12 +83,6 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: OpenClash
-      run: |
-        cd openwrt
-        cd openwrt-packages
-        git clone https://github.com/vernesong/OpenClash.git
-
     - name: Compile the firmware
       id: compile
       run: |
@@ -119,3 +113,17 @@ jobs:
       with:
         name: Openwrt k2p openclash
         path: ${{ env.FIRMWARE }}
+
+#===========其他diy上传==============================================================
+    - name: Upload packages directory
+      uses: actions/upload-artifact@master
+      with:
+        name: OpenWrt_bin_packages
+        path: openwrt/bin/packages
+
+#==================================================================================
+    - name: 自定义插件
+      run: |
+        cd openwrt
+        git clone  git clone https://github.com/vernesong/OpenClash.git package/openwrt-package
+
