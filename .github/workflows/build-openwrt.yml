@@ -113,8 +113,9 @@ jobs:
         path: openwrt/bin/packages
 
 #==================================================================================
-    - name: 自定义插件
+    - name: OpenClash
       run: |
-        cd openwrt
-        git clone  git clone https://github.com/vernesong/OpenClash.git package/openwrt-package
-
+        cd package
+        mkdir openwrt-packages
+        cd openwrt-packages
+        git clone https://github.com/vernesong/OpenClash.git
